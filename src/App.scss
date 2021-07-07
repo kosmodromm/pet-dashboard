@@ -1,0 +1,46 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #005c3a;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+}
+
+.App-body {
+  background-color: #fdfdfd;
+  height: 80vh;
+  display: flex;
+}
+.App-footer {
+  background-color: #fdfdfd;
+  display: flex;
+}
+
+.weather-app  {
+  width: 170px;
+  height: 70px;
+  background-color: #ffbc00;
+  border: 2px solid black;
+}
+
+.crypto-app  {
+  width: 200px;
+  height: 200px;
+  background-color: #ff00dd;
+  border: 2px solid black;
+  border-collapse: separate;
+}
+
+.planner-app  {
+  width: 170px;
+  height: 130px;
+  background-color: #26ff00;
+  border: 2px solid black;
+  border-collapse: separate;
+}
