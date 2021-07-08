@@ -10,10 +10,14 @@ export default function Header () {
                 </NavLink>
             </div>
             <div>
-                Contacts
+                <NavLink to='/' >
+                    Contacts
+                </NavLink>
             </div>
             <div>
-                Login
+                <NavLink to='/' >
+                    Login
+                </NavLink>
             </div>
         </div>
     )

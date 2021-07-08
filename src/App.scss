@@ -4,7 +4,7 @@
 
 .App-header {
   background-color: #005c3a;
-  height: 6vh;
+  height: 5vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -14,10 +14,11 @@
 
 .App-body {
   background-color: #fdfdfd;
-  height: 80vh;
+  height: 90vh;
   display: flex;
 }
 .App-footer {
+  height: 5vh;
   background-color: #fdfdfd;
   display: flex;
 }
@@ -43,4 +44,10 @@
   background-color: #26ff00;
   border: 2px solid black;
   border-collapse: separate;
+}
+
+.weather-body {
+  background-color: #85a59e;
+  height: 90vh;
+  display: flex;
 }

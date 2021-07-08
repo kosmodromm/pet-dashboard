@@ -2,7 +2,7 @@ import './App.scss';
 import Header from './Components/Header'
 import Dashboard from "./Components/Dashboard";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Weather from "./Components/Weather";
+import Weather from "./Components/Weather/Weather";
 import React from "react";
 
 function App() {
