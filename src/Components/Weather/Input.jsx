@@ -1,3 +1,5 @@
+import {useCallback} from "react";
+
 export default function Input ({value, onChange, onEnter}) {
 
     const onKeyDown = event => {
@@ -8,7 +10,11 @@ export default function Input ({value, onChange, onEnter}) {
 
     return(
         <div>
-            <input value={value} onChange={event => onChange(event.target.value)} onKeyDown={onKeyDown}/>
+            <input className='weather-input'
+                   type='text' placeholder='enter city name'
+                   value={value}
+                   onChange={useCallback(event => onChange(event.target.value), [onChange])}
+                   onKeyDown={onKeyDown}/>
         </div>
     )
 }

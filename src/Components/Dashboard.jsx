@@ -4,17 +4,17 @@ import {NavLink} from "react-router-dom";
 export default function Dashboard () {
     return (
         <div className="App-body">
-            <div className="crypto-app">
+            <div className="app-card">
                 Crypto
             </div>
-            <div className="planner-app">
+            <div className="app-card">
                 Planner
             </div>
-            <div className="weather-app">
-            <NavLink to='/weather-app' >
+            <NavLink to='/weather-app' className="app-card">
+            <div>
                 Weather
-            </NavLink>
             </div>
+            </NavLink>
         </div>
     )
 }
