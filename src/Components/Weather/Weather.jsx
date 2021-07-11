@@ -12,6 +12,7 @@ export default function Weather () {
     const [icon, setIcon] = useState('02d');
     const [q, setQ] = useState('');
     const [weatherData, setWeatherData] = useState(null);
+    const [iconStyle, setIconStyle] = useState(null);
 
     const iconUrl = useMemo(() => `http://openweathermap.org/img/wn/${icon}@2x.png`, [icon]);
 
@@ -106,9 +107,14 @@ export default function Weather () {
         }
     }, [weatherData])
 
-console.log(weatherData);
+    const parallaxIcon = (e) => {
+        let offsetX = (e.clientX / window.innerWidth * 30) - 15;
+        let offsetY = (e.clientY / window.innerHeight * 20) - 10;
+        setIconStyle({left:`${offsetX}px`, top: `${offsetY}px`});
+    };
+
     return (
-        <div className="weather-body" style={{background:`url(${setBackground})`}}>
+        <div className="weather-body" style={{background:`url(${setBackground})`}} onMouseMove={parallaxIcon}>
             <Input value={q} onEnter={loadWeather} onChange={setQ}/>
             <div className="weather">
                 <div className='weather-info'>
@@ -117,7 +123,7 @@ console.log(weatherData);
                     <p className='weather-temp'>{getTemp}</p>
                 </div>
                 <div className='weather-icon'>
-                    <img src={iconUrl} alt={getIconAlt}/>
+                    <img src={iconUrl} alt={getIconAlt} style={iconStyle}/>
                 </div>
             </div>
         </div>
