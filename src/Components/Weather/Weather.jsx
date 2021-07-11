@@ -113,10 +113,14 @@ export default function Weather () {
         setIconStyle({left:`${offsetX}px`, top: `${offsetY}px`});
     };
 
+    const showWeatherBox = useMemo(() => {
+        return weatherData ? {display:'flex'} : {display:'none'}
+    }, [weatherData])
+
     return (
         <div className="weather-body" style={{background:`center no-repeat url(${setBackground})`}} onMouseMove={parallaxIcon}>
             <Input value={q} onEnter={loadWeather} onChange={setQ}/>
-            <div className="weather">
+            <div className="weather" style={showWeatherBox}>
                 <div className='weather-info'>
                     <p className='weather-city'>{getCityName}</p>
                     <p className='weather-date'>{getDate}</p>
