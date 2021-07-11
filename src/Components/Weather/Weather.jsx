@@ -66,8 +66,18 @@ export default function Weather () {
        return value < 10 ? `0${value}` : value;
     }
 
+    const getCurrentTimeUTC = useMemo(() =>
+    {
+        let tmLoc = new Date();
+        return tmLoc.getTime() + tmLoc.getTimezoneOffset() * 60000;
+    }, [])
+
     const setBackground = useMemo(() => {
-        let hour = new Date().getHours();
+        if (!weatherData) {
+            return daySky;
+        }
+
+        let hour = new Date(getCurrentTimeUTC + weatherData.timezone * 1000).getHours();
         if (hour > 0 && hour < 5) {
             return nightSky;
         } else if (hour < 12) {
@@ -77,18 +87,16 @@ export default function Weather () {
         } else {
             return eveningSky;
         }
-    }, [])
+    }, [getCurrentTimeUTC, weatherData])
 
     const getDate = useMemo(() => {
         if (!weatherData) {
             return "";
         } else {
-            // timezone не считается в date ???
-            let timezone = weatherData.timezone ? weatherData.timezone : 0;
-            let date = new Date(Date.now() + timezone);
+            let date = new Date(getCurrentTimeUTC + weatherData.timezone * 1000);
             return `${addZero(date.getHours())}:${addZero(date.getMinutes())} • ${addZero(date.getDate())}/${addZero(date.getMonth())}`;
         }
-    }, [weatherData])
+    }, [weatherData, getCurrentTimeUTC])
 
     const getTemp = useMemo(() => {
         if (!weatherData) {

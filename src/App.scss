@@ -13,7 +13,7 @@
   a {
     color: white;
     text-decoration: none;
-    font: 1em "Roboto Light", sans-serif;
+    font: 1em "Oxygen", sans-serif;
   }
 }
 
@@ -57,7 +57,7 @@
   border: 0;
   box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
   border-radius: 5px;
-  font: 1.2em "Roboto Light", sans-serif;
+  font: 1.2em "Oxygen", sans-serif;
   &:focus {
     background: rgba(49, 49, 49, 0.1);
     border: none;
@@ -85,16 +85,16 @@
 }
 
 .weather-city {
-  font: 1.5em "Roboto Light", sans-serif;
+  font: 1.5em "Oxygen", sans-serif;
   margin: 5px;
 }
 
 .weather-date {
-  font: 1.2em "Roboto Light", sans-serif;
+  font: 1.2em "Oxygen", sans-serif;
   margin: 5px;
 }
 
 .weather-temp {
-  font: 2em "Roboto Light", sans-serif;
+  font: 2em "Oxygen", sans-serif;
   margin: 20px 5px;
 }
