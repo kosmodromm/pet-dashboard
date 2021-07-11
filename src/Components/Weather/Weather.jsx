@@ -114,7 +114,7 @@ export default function Weather () {
     };
 
     return (
-        <div className="weather-body" style={{background:`url(${setBackground})`}} onMouseMove={parallaxIcon}>
+        <div className="weather-body" style={{background:`center no-repeat url(${setBackground})`}} onMouseMove={parallaxIcon}>
             <Input value={q} onEnter={loadWeather} onChange={setQ}/>
             <div className="weather">
                 <div className='weather-info'>
