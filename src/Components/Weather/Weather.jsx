@@ -4,15 +4,17 @@ import morningSky from './img/sky_morning.jpg';
 import daySky from './img/sky_day.jpg';
 import eveningSky from './img/sky_evening.jpg';
 import nightSky from './img/sky_night.jpg';
+import cities from 'cities.json';
 
 const APPID = 'f953a91cfb30c44995dd52bb97a21548';
 const API_ROOT = `https://api.openweathermap.org/data/2.5/weather`;
 
 export default function Weather () {
     const [icon, setIcon] = useState('02d');
-    const [q, setQ] = useState('');
+    const [cityName, setCityName] = useState('');
     const [weatherData, setWeatherData] = useState(null);
     const [iconStyle, setIconStyle] = useState(null);
+    const [filteredCities, setFilteredCities] = useState([]);
 
     const iconUrl = useMemo(() => `http://openweathermap.org/img/wn/${icon}@2x.png`, [icon]);
 
@@ -30,7 +32,7 @@ export default function Weather () {
             .catch( err => console.log(err.message))
     }, [])
 
-    const loadWeather = useCallback(() => {
+    const loadWeather = useCallback((q) => {
         if (!q) {
             return;
         }
@@ -44,8 +46,24 @@ export default function Weather () {
 
             setWeatherData(data);
             setIcon(data.weather[0].icon);
-        })
-    }, [q, makeApiRequest])
+            setCityName('')
+            })
+    }, [makeApiRequest])
+
+    const onListClick = useCallback((e) => {
+        setCityName(e);
+        loadWeather(e);
+    }, [loadWeather]);
+
+    const filterList = useCallback((value) =>{
+        setCityName(value);
+        let filteredList = cities.filter((e) => e.name.toLowerCase().includes(value));
+        setFilteredCities(
+            <ul>{filteredList.slice(0, 4).map((e, key) =>
+                <li key={key} onClick={() => onListClick(e.name)}>{e.name}</li>
+            )}</ul>
+        )
+    }, [onListClick]);
 
     const getIconAlt = useMemo(() => {
         if (!weatherData) {
@@ -119,7 +137,7 @@ export default function Weather () {
 
     return (
         <div className="weather-body" style={{background:`center no-repeat url(${setBackground})`}} onMouseMove={parallaxIcon}>
-            <Input value={q} onEnter={loadWeather} onChange={setQ}/>
+            <Input value={cityName} onEnter={loadWeather} onChange={filterList} filteredCities={filteredCities}/>
             <div className="weather" style={showWeatherBox}>
                 <div className='weather-info'>
                     <p className='weather-city'>{getCityName}</p>

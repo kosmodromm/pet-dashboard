@@ -72,6 +72,36 @@
   }
 }
 
+.match-list {
+  z-index: 1;
+  position: absolute;
+  width: 330px;
+  max-height: 600px;
+  display: flex;
+  margin-top: 5px;
+  background: rgb(234, 234, 234);
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 5px;
+  ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 5px 0;
+    li{
+      text-align: start;
+      cursor: pointer;
+      font: 400 1.2em "Barlow", sans-serif;
+      color: #242424;
+      transition: all 0.2s;
+      margin: 5px 15px;
+      &:hover {
+        backdrop-filter: brightness(80%);
+      }
+    }
+  }
+}
+
 .weather {
   width: 600px;
   height: 300px;
