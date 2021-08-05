@@ -8,6 +8,10 @@ export default function Input ({value, onChange, onEnter, filteredCities}) {
         }
     }
 
+    const handleChange = useCallback((event) =>
+        onChange(event.target.value), [onChange])
+
+    // двойная проверка для того что бы не был виден пустой блок при отсутствии отфильтрованных вариантов
     const filteredList = (!value || (filteredCities.props.children.length < 1)) ? '' : filteredCities;
 
     return(
@@ -15,8 +19,7 @@ export default function Input ({value, onChange, onEnter, filteredCities}) {
             <input className='weather-input'
                    type='text' placeholder='enter city name...'
                    value={value}
-                   onChange={useCallback((event) =>
-                       onChange(event.target.value), [onChange])}
+                   onChange={handleChange}
                    onKeyDown={onKeyDown}/>
             <div className='match-list'>{filteredList}</div>
         </div>

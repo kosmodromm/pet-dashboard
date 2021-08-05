@@ -10,13 +10,14 @@ const APPID = 'f953a91cfb30c44995dd52bb97a21548';
 const API_ROOT = `https://api.openweathermap.org/data/2.5/weather`;
 
 export default function Weather () {
-    const [icon, setIcon] = useState('02d');
     const [cityName, setCityName] = useState('');
     const [weatherData, setWeatherData] = useState(null);
     const [iconStyle, setIconStyle] = useState(null);
     const [filteredCities, setFilteredCities] = useState([]);
 
-    const iconUrl = useMemo(() => `http://openweathermap.org/img/wn/${icon}@2x.png`, [icon]);
+    const iconUrl = useMemo(() => {
+        const icon = weatherData ? weatherData.weather[0].icon : '01d';
+        return `/wheather-icons/${icon}.png`}, [weatherData]);
 
     const makeApiRequest = useCallback((url, params) => {
         const query = new URLSearchParams(params);
@@ -45,14 +46,13 @@ export default function Weather () {
             }
 
             setWeatherData(data);
-            setIcon(data.weather[0].icon);
-            setCityName('')
+            // setCityName(''); // если надо убрать значение ввода после ввода
             })
     }, [makeApiRequest])
 
-    const onListClick = useCallback((e) => {
-        setCityName(e);
-        loadWeather(e);
+    const onListClick = useCallback((city) => {
+        setCityName(city);
+        loadWeather(city);
     }, [loadWeather]);
 
     const filterList = useCallback((value) =>{
@@ -69,7 +69,7 @@ export default function Weather () {
         if (!weatherData) {
             return "no available info";
         } else {
-            return weatherData.weather[0].description
+            return weatherData.weather[0].description;
         }
     }, [weatherData])
 
